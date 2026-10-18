@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b0a10">
+<title>ಕಾಲದ ಜಗತ್ತು · The World Through Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div class="vig"></div>
+  <div class="crosshair"></div>
+
+  <div class="hud">
+    <div class="topbar">
+      <div class="brand">ಕಾಲದ ಜಗತ್ತು<small>The World Through Time</small></div>
+      <div class="spacer"></div>
+      <button class="iconbtn" id="helpBtn" title="ಸಹಾಯ">?</button>
+      <button class="iconbtn" id="journalBtn" title="ಪಯಣದ ಪುಸ್ತಕ">✦<span class="badge" id="jBadge">0</span></button>
+    </div>
+    <div class="eraline">
+      <span class="ename" id="eraName">ಶಾತವಾಹನರು</span>
+      <span class="een" id="eraEn">Shatavahanas</span>
+      <span class="eyr" id="eraYears">c. 30 BCE – 230 CE</span>
+    </div>
+    <div class="prog"><i id="progFill"></i></div>
+  </div>
+
+  <button class="prompt" id="prompt"><b>ಒತ್ತಿರಿ</b><span>ಸ್ಮಾರಕ</span></button>
+
+  <aside class="card" id="card">
+    <button class="close" id="cardClose">✕</button>
+    <div class="kicker" id="cKicker"></div>
+    <h2 id="cTitle"></h2>
+    <div class="sub" id="cSub"></div>
+    <div class="body" id="cBody"></div>
+    <h4>ಮುಖ್ಯ ರಾಜರು</h4>
+    <ul class="klist" id="cKings"></ul>
+    <h4 id="cSubsHead">ಉಪ-ರಾಜರು · ಶಾಖೆಗಳು</h4>
+    <ul class="klist" id="cSubs"></ul>
+  </aside>
+
+  <section class="sheet" id="journal">
+    <button class="close" id="jClose">✕</button>
+    <h2>ಪಯಣದ ಪುಸ್ತಕ</h2>
+    <p class="note" id="jProgress"></p>
+    <div class="stamps" id="jStamps"></div>
+    <h4>ಅಗೆದ ಅವಶೇಷಗಳು</h4>
+    <div class="arts" id="jArts"></div>
+  </section>
+
+  <section class="sheet" id="help">
+    <button class="close" id="helpClose">✕</button>
+    <h2>ಹೇಗೆ ಆಡುವುದು</h2>
+    <ul class="legend" id="helpLegend">
+      <li><b>W A S D</b> — ನಡೆಯಲು</li>
+      <li><b>ಇಲಿ</b> — ನೋಡಲು · <b>Shift</b> — ಓಡಲು</li>
+      <li><b>E</b> — ಸ್ಮಾರಕ/ಪ್ರಾಣಿ ಓದಲು</li>
+    </ul>
+    <p class="note">ಸ್ಮಾರಕಗಳು ಮತ್ತು ಪ್ರಾಣಿ ಲಾಂಛನಗಳ ಬಳಿ ಹೋಗಿ, ಒತ್ತಿ ಅವರ ಕಥೆ ಓದಿ. ಎಷ್ಟು ಕಂಡುಕೊಳ್ಳುತ್ತೀರೋ ಅಷ್ಟು ಪಯಣದ ಪುಸ್ತಕ ತುಂಬುತ್ತದೆ.</p>
+  </section>
+
+  <div class="intro on" id="intro">
+    <div class="in">
+      <div class="kick">ಶ್ರೀ ಕರ್ನಾಟಕ</div>
+      <h1>ಕಾಲದ ಜಗತ್ತು</h1>
+      <div class="s">The World Through Time</div>
+      <p>ಒಂದು 3D ಜಗತ್ತು — ಕ್ರಿ.ಪೂ. 300 ರಿಂದ 1950ರವರೆಗೆ. ಕರ್ನಾಟಕದ ರಾಜರು, ಅವರು ಕಟ್ಟಿದ ಸ್ಮಾರಕಗಳು, ಅವರ ಲಾಂಛನಗಳು. ಎಲ್ಲೆಂದರಲ್ಲಿ ಸುತ್ತಾಡಿ, ಅನ್ವೇಷಿಸಿ.</p>
+      <button id="startBtn">ಪಯಣ ಆರಂಭಿಸಿ</button>
+      <ul class="legend" id="introLegend">
+        <li><b>W A S D</b> ನಡೆಯಲು · <b>ಇಲಿ</b> ನೋಡಲು</li>
+        <li>ಸ್ಮಾರಕ ಮತ್ತು ಪ್ರಾಣಿ ಲಾಂಛನಗಳ ಬಳಿ ಹೋಗಿ <b>E</b> ಒತ್ತಿ</li>
+        <li><b>✦</b> ನಿಮ್ಮ ಪಯಣದ ಪುಸ್ತಕ</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="loading" id="loading"><div class="spin"></div><div class="lk">ಕಾಲದ ಜಗತ್ತು</div></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
